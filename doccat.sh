@@ -51,7 +51,7 @@ print_filename(){
 print_title(){
   NAME=$1
   echo "<a id=\"_pagetop_\"></a>"
-  echo "- " $NAME
+  echo "# " $NAME
 }
 
 find_subdir() {
