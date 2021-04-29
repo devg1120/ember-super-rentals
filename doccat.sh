@@ -118,6 +118,9 @@ find_subdir() {
       if [ $subdir = "./yarn.lock" ]; then
          continue
       fi
+      if [ $subdir = "./ember-cli-build.js" ]; then
+         continue
+      fi
       #echo " " "$subdir" 
       print_filename $subdir 
       if [ $FILE_BODY -eq 1 ]; then
