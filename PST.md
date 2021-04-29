@@ -2,7 +2,7 @@
 #  ember-super-rentals
 
 
-![test](doc/svg/test.svg)
+![svg test](doc/svg/test.svg)
 
 
 - [**./app**](#./app)
