@@ -1,0 +1,4 @@
+$ nvm ls
+$ nvm use 12.16.1
+$ npm start
+$ open http://127.0.0.1:4200/
