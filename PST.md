@@ -1,6 +1,10 @@
 <a id="_pagetop_"></a>
 #  ember-super-rentals
 
+
+![test](doc/svg/test.svg)
+
+
 - [**./app**](#./app)
      - [app.js](#./app/app.js)
      - [index.html](#./app/index.html)
