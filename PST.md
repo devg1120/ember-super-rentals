@@ -18,6 +18,7 @@
 - [**./app/helpers**](#./app/helpers)
 - [**./app/models**](#./app/models)
 - [**./app/routes**](#./app/routes)
+     - [index.js](#./app/routes/index.js)
 - [**./app/styles**](#./app/styles)
      - [app.css](#./app/styles/app.css)
 - [**./app/templates**](#./app/templates)
@@ -166,31 +167,31 @@ export default class MapComponent extends Component {
 ```hbs
 <article class="rental">
    <Rental::Image
-    src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
-    alt="A picture of Grand Old Mansion"
+    src={{@rental.image}}
+    alt="A picture of {{@rental.title}}"
   />
   <div class="details">
-    <h3>Grand Old Mansion</h3>
+    <h3>{{@rental.title}}</h3>
     <div class="detail owner">
-      <span>Owner:</span> Veruca Salt
+      <span>Owner:</span> {{@rental.owner}}
     </div>
     <div class="detail type">
-      <span>Type:</span> Standalone
+      <span>Type:</span> {{@rental.type}}
     </div>
     <div class="detail location">
-      <span>Location:</span> San Francisco
+      <span>Location:</span> {{@rental.city}}
     </div>
     <div class="detail bedrooms">
-      <span>Number of bedrooms:</span> 15
+      <span>Number of bedrooms:</span> {{@rental.bedrooms}}
     </div>
   </div>
     <Map
-    @lat="37.7749"
-    @lng="-122.4194"
+    @lat={{@rental.location.lat}}
+    @lng={{@rental.location.lng}}
     @zoom="9"
     @width="150"
     @height="150"
-    alt="A map of Grand Old Mansion"
+    alt="A map of {{@rental.title}}"
   />
 </article>
 
@@ -247,6 +248,35 @@ export default class RentalImageComponent extends Component {
 ---
 <a id="./app/routes"></a>
 ### **./app/routes**
+---
+<a id="./app/routes/index.js"></a>
+###  ./app/routes/index.js         [↑](#_pagetop_)
+```js
+import Route from '@ember/routing/route';
+
+const COMMUNITY_CATEGORIES = ['Condo', 'Townhouse', 'Apartment'];
+
+export default class IndexRoute extends Route {
+  async model() {
+    let response = await fetch('/api/rentals.json');
+    let { data } = await response.json();
+
+    return data.map((model) => {
+      let { attributes } = model;
+      let type;
+
+      if (COMMUNITY_CATEGORIES.includes(attributes.category)) {
+        type = 'Community';
+      } else {
+        type = 'Standalone';
+      }
+
+      return { type, ...attributes };
+    });
+  }
+}
+
+```
 ---
 <a id="./app/styles"></a>
 ### **./app/styles**
@@ -788,14 +818,14 @@ p {
     <LinkTo @route="about" class="button">About Us</LinkTo>
 
 </Jumbo>
+
 <div class="rentals">
   <ul class="results">
-    <li><Rental /></li>
-    <li><Rental /></li>
-    <li><Rental /></li>
+    {{#each @model as |rental|}}
+      <li><Rental @rental={{rental}} /></li>
+    {{/each}}
   </ul>
 </div>
-
 
 ```
 ---
