@@ -1,10 +1,6 @@
 <a id="_pagetop_"></a>
 #  ember-super-rentals
 
-
-![svg test](doc/svg/test.svg)
-
-
 - [**./app**](#./app)
      - [app.js](#./app/app.js)
      - [index.html](#./app/index.html)
@@ -33,6 +29,9 @@
 - [**./config**](#./config)
      - [environment.js](#./config/environment.js)
      - [targets.js](#./config/targets.js)
+- [**./doc**](#./doc)
+- [**./doc/svg**](#./doc/svg)
+     - [test.svg](#./doc/svg/test.svg)
 ---
 <a id="./app"></a>
 ### **./app**
@@ -43,7 +42,7 @@
 import Application from '@ember/application';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
-import config from 'testapp/config/environment';
+import config from 'ember-super-rentals/config/environment';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
@@ -70,7 +69,7 @@ loadInitializers(App, config.modulePrefix);
     {{content-for "head"}}
 
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/testapp.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ember-super-rentals.css">
 
     {{content-for "head-footer"}}
   </head>
@@ -78,7 +77,7 @@ loadInitializers(App, config.modulePrefix);
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/testapp.js"></script>
+    <script src="{{rootURL}}assets/ember-super-rentals.js"></script>
 
     {{content-for "body-footer"}}
   </body>
@@ -90,7 +89,7 @@ loadInitializers(App, config.modulePrefix);
 ###  ./app/router.js         [↑](#_pagetop_)
 ```js
 import EmberRouter from '@ember/routing/router';
-import config from 'testapp/config/environment';
+import config from 'ember-super-rentals/config/environment';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -843,7 +842,7 @@ p {
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'testapp',
+    modulePrefix: 'ember-super-rentals',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -916,5 +915,22 @@ if (isCI || isProduction) {
 module.exports = {
   browsers,
 };
+
+```
+---
+<a id="./doc"></a>
+### **./doc**
+---
+<a id="./doc/svg"></a>
+### **./doc/svg**
+---
+<a id="./doc/svg/test.svg"></a>
+###  ./doc/svg/test.svg         [↑](#_pagetop_)
+```svg
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="100" height="60" fill="#ddd" />
+  <polygon points="50 10, 70 30, 50 50, 30 30" fill="#99f" />
+</svg>
 
 ```
